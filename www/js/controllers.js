@@ -42,8 +42,14 @@ angular.module('starter.controllers', [])
   findAllProducts();
 })
 
-.controller('ProductCtrl', function($scope, $stateParams, ProductService) {
+.controller('ProductCtrl', function($scope, $stateParams, ProductService, BrandService) {
   ProductService.findById($stateParams.productId).then(function(product){
     $scope.product = product;
   });
+  var findAllBrands = function(){
+    BrandService.findAll().then(function(brands){
+      $scope.brands = brands;
+    });
+  };
+  findAllBrands();
 });

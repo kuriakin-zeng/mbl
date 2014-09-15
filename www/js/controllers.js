@@ -33,17 +33,17 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ProductsCtrl', function($scope) {
-  $scope.products = [
-    { title: 'Shampoo', id: 1 },
-    { title: 'Treatment', id: 2 },
-    { title: 'Mask', id: 3 },
-    { title: 'Serum', id: 4 },
-    { title: 'Styling', id: 5 },
-    { title: 'Others', id: 6 }
-  ];
+.controller('ProductsCtrl', function($scope, ProductService) {
+  var findAllProducts = function(){
+    ProductService.findAll().then(function(products){
+      $scope.products = products;
+    });
+  };
+  findAllProducts();
 })
 
-.controller('ProductCtrl', function($scope, $stateParams) {
-  $scope.product = $stateParams;
+.controller('ProductCtrl', function($scope, $stateParams, ProductService) {
+  ProductService.findById($stateParams.productId).then(function(product){
+    $scope.product = product;
+  });
 });

@@ -47,8 +47,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'product.services'])
         }
       }
     })
-    .state('app.products', {
+    .state('app.categories', {
       url: "/products",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/categories.html",
+          controller: 'CategoryCtrl'
+        }
+      }
+    })
+
+    .state('app.brands', {
+      url: "/products/:categoryId",
+      views: {
+        'menuContent' :{
+          templateUrl: "templates/brands.html",
+          controller: 'BrandCtrl'
+        }
+      }
+    })
+
+    .state('app.products', {
+      url: "/products/:categoryId/:brandId",
       views: {
         'menuContent' :{
           templateUrl: "templates/products.html",
@@ -57,15 +77,16 @@ angular.module('starter', ['ionic', 'starter.controllers', 'product.services'])
       }
     })
 
-    .state('app.single', {
-      url: "/products/:productId",
+    .state('app.product', {
+      url: "/products/:categoryId/:brandId/:productId",
       views: {
         'menuContent' :{
           templateUrl: "templates/product.html",
           controller: 'ProductCtrl'
         }
       }
-    });
+    })
+    ;
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/products');
 });

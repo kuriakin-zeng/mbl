@@ -1,11 +1,8 @@
 <ion-view title="{{product.title}}">
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="brand in brands" href="#/app/products/{{product.id}}/{{brand.id}}" 
-      class="item-thumbnail-left">
-        <img ng-src="{{brand.img}}"/>
-        <h2>{{brand.title}}</h2>
-      </ion-item>
+        <img ng-src="{{product.img}}"/>
+        <h2>{{product.title}}</h2>
     </ion-list>
   </ion-content>
 </ion-view>

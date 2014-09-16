@@ -33,23 +33,45 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ProductsCtrl', function($scope, ProductService) {
-  var findAllProducts = function(){
-    ProductService.findAll().then(function(products){
-      $scope.products = products;
+.controller('CategoryCtrl', function($scope, ProductService) {
+    ProductService.findAllCategories().then(function(categories){
+      $scope.categories = categories;
     });
-  };
-  findAllProducts();
 })
 
-.controller('ProductCtrl', function($scope, $stateParams, ProductService, BrandService) {
-  ProductService.findById($stateParams.productId).then(function(product){
+.controller('BrandCtrl', function($scope, $stateParams, ProductService) {
+  ProductService.findBrandsByCategoryId($stateParams.categoryId).then(function(brands){
+    $scope.category = {
+      id: $stateParams.categoryId,
+      title: brands.category,
+    };
+    $scope.brands = brands.brands;
+  });
+})
+
+.controller('ProductsCtrl', function($scope, $stateParams, ProductService) {
+  ProductService.findProductsByBrandId($stateParams.brandId).then(function(products){
+    $scope.category = {
+      id: $stateParams.categoryId
+    };
+    $scope.brand = {
+      id: $stateParams.brandId,
+      title: products.brand,
+    };
+    $scope.products = products.products;
+  });
+})
+
+.controller('ProductCtrl', function($scope, $stateParams, ProductService) {
+  ProductService.findProductById($stateParams.productId).then(function(product){
+    $scope.category = {
+      id: $stateParams.categoryId
+    };
+    $scope.brand = {
+      id: $stateParams.brandId,
+      title: product.brand,
+    };
     $scope.product = product;
   });
-  var findAllBrands = function(){
-    BrandService.findAll().then(function(brands){
-      $scope.brands = brands;
-    });
-  };
-  findAllBrands();
-});
+})
+;

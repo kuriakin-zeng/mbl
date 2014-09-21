@@ -62,7 +62,7 @@ angular.module('starter.controllers', [])
   });
 })
 
-.controller('ProductCtrl', function($scope, $stateParams, ProductService) {
+.controller('ProductCtrl', function($scope, $stateParams, $state, ProductService, CartService) {
   ProductService.findProductById($stateParams.productId).then(function(product){
     $scope.category = {
       id: $stateParams.categoryId
@@ -72,10 +72,16 @@ angular.module('starter.controllers', [])
       title: product.brand,
     };
     $scope.product = product;
+    $scope.cart = CartService.cart;
+    $scope.goToCart = function(){
+      $state.go('app.cart');
+    };
   });
 })
 
 .controller('CartCtrl', function($scope, CartService) {
+  // dummy_cart = {items: [{ name:'Polaroid', price: 50, quantity: 2, sku: 123 }]};
+  // $scope.cart = dummy_cart;
   $scope.cart = CartService.cart;
 })
 ;

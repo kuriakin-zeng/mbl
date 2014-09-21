@@ -20,16 +20,24 @@ angular.module('product.services', [])
 
     var products = {
         brand : "Toni & Guy",
-        products: [
-            { title: 'Toni&Guy Cleanse Shampoo for Damaged Hair', id: 123, img: "pics/Lisa_Wong.jpg"},
-            { title: 'Toni&Guy Cleanse Dry Shampoo', id: 456, img: "pics/Paul_Jones.jpg"},
-        ]
+        products: [{
+            title: 'Toni&Guy Cleanse Shampoo for Damaged Hair',
+            id: 123,
+            img: "pics/Lisa_Wong.jpg",
+            price: 30,
+        },{
+            title: 'Toni&Guy Cleanse Dry Shampoo',
+            id: 456,
+            img: "pics/Paul_Jones.jpg",
+            price: 40,
+        }],
     };
 
     var product = {
         id: 123,
         title: 'Toni&Guy Cleanse Shampoo for Damaged Hair',
-        img: "pics/Lisa_Wong.jpg"
+        img: "pics/Lisa_Wong.jpg",
+        price: 40,
     };
 
     // We use promises to make this api asynchronous. This is clearly not necessary when using in-memory data
@@ -103,6 +111,8 @@ angular.module('product.services', [])
     );
 
     // return data object with cart
-    return cart;
+    return {
+        cart: cart
+    };
 })
 ;

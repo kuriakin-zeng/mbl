@@ -74,8 +74,4 @@ angular.module('starter.controllers', [])
     $scope.product = product;
   });
 })
-
-.controller('CartCtrl', function($scope, CartService) {
-  $scope.cart = CartService.cart;
-})
 ;

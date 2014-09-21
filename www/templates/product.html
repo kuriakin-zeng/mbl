@@ -3,6 +3,17 @@
     <ion-list>
         <img ng-src="{{product.img}}"/>
         <h2>{{product.title}}</h2>
+        <button 
+        	class="button button-full button-assertive"
+        	ng-click="cart.addItem(product.sku, product.name, product.price, 1)">
+        	Add to Cart
+		</button>
+        <!-- <button class="button button-full"> -->
+        	<a href="#/app/cart">Go to Cart </a>
+        	<!-- <span ng-show="cart.getTotalCount(product.id) > 0">
+        		({{cart.getTotalCount()}}</b> item(s) <b>{{cart.getTotalPrice() | currency}})
+        	</span> -->
+		<!-- </button> -->
     </ion-list>
   </ion-content>
 </ion-view>
